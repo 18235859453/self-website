@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  :root {
+    --color-bg: #fafaf9;
+    --color-text: #1c1917;
+    --color-muted: #78716c;
+    --color-border: #e7e5e4;
+    --color-accent: #0c0a09;
+    --color-surface: #ffffff;
+  }
+
+  .dark {
+    --color-bg: #0c0a09;
+    --color-text: #e7e5e4;
+    --color-muted: #a8a29e;
+    --color-border: #292524;
+    --color-accent: #fafaf9;
+    --color-surface: #1c1917;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] antialiased;
+  }
+}

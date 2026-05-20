@@ -1,0 +1,54 @@
+---
+import { site } from "../data/site";
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} — ${site.name}` : site.name;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description || site.title} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description || site.title} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
+      <nav class="mx-auto max-w-3xl px-6 py-4 flex items-center justify-between">
+        <a href="/" class="text-lg font-semibold tracking-tight text-[var(--color-accent)] no-underline">
+          {site.name}
+        </a>
+        <ul class="flex gap-6 text-sm">
+          <li><a href="/" class="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors no-underline">首页</a></li>
+          <li><a href="/resume" class="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors no-underline">简历</a></li>
+          <li><a href="/blog" class="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors no-underline">博客</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="flex-1 mx-auto max-w-3xl px-6 py-12 w-full">
+      <slot />
+    </main>
+
+    <footer class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="mx-auto max-w-3xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-[var(--color-muted)]">
+        <span>&copy; {new Date().getFullYear()} {site.name}</span>
+        <div class="flex gap-4">
+          {site.github && <a href={site.github} class="hover:text-[var(--color-accent)] transition-colors no-underline">GitHub</a>}
+          {site.email && <a href={`mailto:${site.email}`} class="hover:text-[var(--color-accent)] transition-colors no-underline">Email</a>}
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

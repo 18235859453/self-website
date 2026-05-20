@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { resume } from "../data/resume";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="简历" description={`${resume.name} 的个人简历 — ${resume.title}`}>
+  <article class="space-y-10 print:space-y-6">
+    <!-- Header -->
+    <header class="space-y-3 not-prose">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-accent)]">
+        {resume.name}
+      </h1>
+      <p class="text-lg text-[var(--color-muted)]">{resume.title}</p>
+      <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-[var(--color-muted)]">
+        {resume.email && (
+          <a href={`mailto:${resume.email}`} class="hover:text-[var(--color-accent)] transition-colors no-underline">
+            {resume.email}
+          </a>
+        )}
+        {resume.github && (
+          <a
+            href={resume.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[var(--color-accent)] transition-colors no-underline"
+          >
+            GitHub
+          </a>
+        )}
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold tracking-tight text-[var(--color-accent)] border-b border-[var(--color-border)] pb-1.5">
+        个人简介
+      </h2>
+      <p class="text-sm text-[var(--color-muted)] leading-relaxed">{resume.summary}</p>
+    </section>
+
+    <!-- Experience -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold tracking-tight text-[var(--color-accent)] border-b border-[var(--color-border)] pb-1.5">
+        工作经历
+      </h2>
+      <div class="space-y-6">
+        {resume.experience.map((exp) => (
+          <div class="space-y-2">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
+              <div>
+                <span class="font-medium text-sm text-[var(--color-accent)]">{exp.role}</span>
+                <span class="text-[var(--color-muted)] text-sm"> — {exp.company}</span>
+              </div>
+              <span class="text-xs text-[var(--color-muted)]">{exp.period}</span>
+            </div>
+            <ul class="list-disc pl-5 space-y-1 text-sm text-[var(--color-muted)]">
+              {exp.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold tracking-tight text-[var(--color-accent)] border-b border-[var(--color-border)] pb-1.5">
+        教育背景
+      </h2>
+      <div class="space-y-3">
+        {resume.education.map((edu) => (
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
+            <div>
+              <span class="font-medium text-sm text-[var(--color-accent)]">{edu.school}</span>
+              <span class="text-[var(--color-muted)] text-sm"> — {edu.degree}</span>
+            </div>
+            <span class="text-xs text-[var(--color-muted)]">{edu.period}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold tracking-tight text-[var(--color-accent)] border-b border-[var(--color-border)] pb-1.5">
+        技能
+      </h2>
+      <div class="space-y-3">
+        {resume.skills.map((sk) => (
+          <div class="space-y-1">
+            <span class="text-xs font-medium text-[var(--color-accent)]">{sk.category}</span>
+            <p class="text-sm text-[var(--color-muted)]">{sk.items.join(" / ")}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="space-y-3">
+      <h2 class="text-lg font-semibold tracking-tight text-[var(--color-accent)] border-b border-[var(--color-border)] pb-1.5">
+        项目亮点
+      </h2>
+      <div class="space-y-4">
+        {resume.projects.map((proj) => (
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-medium text-sm text-[var(--color-accent)]">{proj.name}</span>
+              {proj.url && (
+                <a
+                  href={proj.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors no-underline"
+                >
+                  链接 ↗
+                </a>
+              )}
+            </div>
+            <p class="text-sm text-[var(--color-muted)]">{proj.description}</p>
+            {proj.tech && proj.tech.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {proj.tech.map((t) => (
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-[var(--color-border)] text-[var(--color-muted)]">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  @media print {
+    header nav,
+    footer,
+    .no-print {
+      display: none !important;
+    }
+    body {
+      font-size: 11pt;
+      color: #000;
+      background: #fff;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+    @page {
+      margin: 1.5cm;
+    }
+  }
+</style>

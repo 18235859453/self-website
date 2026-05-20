@@ -1,0 +1,92 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import { resume } from "../data/resume";
+
+const latestPosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const topSkills = resume.skills.slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="space-y-12">
+    <!-- Hero -->
+    <div class="space-y-5">
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--color-accent)]">
+          {site.name}
+        </h1>
+        <p class="text-lg text-[var(--color-muted)] max-w-xl leading-relaxed">
+          {site.title}
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/resume"
+          class="inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] text-[var(--color-bg)] px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-90 no-underline"
+        >
+          查看简历
+        </a>
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] px-5 py-2.5 text-sm font-medium text-[var(--color-accent)] hover:bg-[var(--color-border)] transition-colors no-underline"
+        >
+          阅读博客
+        </a>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <section class="space-y-3">
+      <h2 class="text-base font-semibold text-[var(--color-accent)]">技能领域</h2>
+      <div class="flex flex-wrap gap-2">
+        {topSkills.map((sk) => (
+          <span class="text-xs px-2.5 py-1 rounded-full bg-[var(--color-border)] text-[var(--color-muted)]">
+            {sk.category}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Latest Posts -->
+    {
+      latestPosts.length > 0 && (
+        <section class="space-y-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-semibold text-[var(--color-accent)]">最新文章</h2>
+            <a
+              href="/blog"
+              class="text-xs text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors no-underline"
+            >
+              查看全部 →
+            </a>
+          </div>
+          <ul class="space-y-4">
+            {latestPosts.map((post) => (
+              <li class="border-b border-[var(--color-border)] pb-4 last:border-0 last:pb-0">
+                <article class="space-y-1">
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="font-medium text-[var(--color-accent)] hover:underline no-underline"
+                  >
+                    {post.data.title}
+                  </a>
+                  <p class="text-sm text-[var(--color-muted)]">{post.data.description}</p>
+                  <time
+                    datetime={post.data.pubDate.toISOString().slice(0, 10)}
+                    class="text-xs text-[var(--color-muted)]"
+                  >
+                    {post.data.pubDate.toISOString().slice(0, 10)}
+                  </time>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </section>
+</BaseLayout>
