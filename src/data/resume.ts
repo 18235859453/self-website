@@ -25,65 +25,93 @@ export interface Resume {
 }
 
 export const resume: Resume = {
-  name: "你的名字",
-  title: "你的头衔",
-  email: "your@email.com",
-  github: "https://github.com/yourname",
+  name: "温世明",
+  title: "嵌入式系统工程师",
+  email: "18235859453@163.com",
+  github: "https://github.com/18235859453",
   summary:
-    "这是一段个人简介，约 3-5 句话。介绍你的职业背景、核心能力和当前关注的方向。你可以在这里简要说明你的经验领域、技术栈偏好以及职业目标。这段文字帮助访客快速了解你。",
+    "电子信息工程专业毕业，专注于嵌入式系统软硬件架构设计。熟练掌握 C/C++ 和 Python，具备从原理图设计到 PCB Layout 再到固件开发的完整能力。热衷将 AI 技术与嵌入式设备结合，追求极致性能与可靠性的工程实现。",
   experience: [
     {
-      company: "示例公司 A",
-      role: "高级前端工程师",
-      period: "2022.01 — 至今",
+      company: "实习 · 电机/变压器测试设备",
+      role: "嵌入式开发",
+      period: "2024",
       highlights: [
-        "主导公司核心产品的前端架构设计与迭代",
-        "推动组件库建设，覆盖 80+ 业务组件",
-        "优化首屏加载性能，LCP 从 3.2s 降至 1.1s",
+        "设计恒流源驱动与高精度信号调理电路，用于绕组温升测量",
+        "实现 ADC 采样与数据处理算法，阻值测量精度达万分之三",
+        "负责模块整体嵌入式软件开发与调试",
       ],
     },
     {
-      company: "示例公司 B",
-      role: "前端工程师",
-      period: "2020.07 — 2021.12",
+      company: "实习 · 家电研发",
+      role: "电饭煲研发",
+      period: "2023",
       highlights: [
-        "参与电商平台前端开发，负责商品详情和订单模块",
-        "引入 TypeScript，完善类型系统，减少线上 bug 30%",
+        "参与智能电饭煲控制逻辑开发与温控算法调试",
+        "协助硬件测试与 PCB 设计验证",
       ],
     },
   ],
   education: [
     {
-      school: "示例大学",
-      degree: "计算机科学与技术 · 本科",
-      period: "2016 — 2020",
+      school: "中国计量大学",
+      degree: "电子信息工程 · 本科",
+      period: "2020.09 — 2024.07",
     },
   ],
   skills: [
     {
-      category: "语言",
-      items: ["TypeScript", "JavaScript", "HTML", "CSS"],
+      category: "编程语言",
+      items: ["C/C++", "Python"],
     },
     {
-      category: "框架",
-      items: ["React", "Next.js", "Astro", "Vue"],
+      category: "嵌入式",
+      items: ["STM32", "ESP32", "FreeRTOS", "UART / IIC / SPI", "YOLO-v3", "PID 控制"],
     },
     {
-      category: "工具",
-      items: ["Git", "Webpack", "Vite", "Figma"],
+      category: "硬件设计",
+      items: ["模拟/数字电路", "PCB 设计", "信号完整性", "EMI/C", "OLED 显示"],
+    },
+    {
+      category: "理论基础",
+      items: ["微积分", "线性代数", "电路分析", "数字电路", "模拟电路"],
     },
   ],
   projects: [
     {
-      name: "个人网站",
-      description: "基于 Astro + Tailwind CSS 的个人简历与博客站点，部署在 Cloudflare Pages。",
-      tech: ["Astro", "Tailwind CSS", "Cloudflare"],
+      name: "智能送药小车（2021 电赛）",
+      description: "基于 STM32 和 FreeRTOS 的自主导航送药小车，集成 UART / IIC 通信，使用 YOLO-v3 视觉识别和 PID 速度控制算法。",
+      url: "https://www.bilibili.com/video/BV1DN411a7DZ",
+      tech: ["STM32", "FreeRTOS", "Python", "PID", "YOLO-v3"],
     },
     {
-      name: "开源组件库",
-      description: "一个轻量级的 React 组件库，支持 Tree Shaking 和按需加载。",
-      url: "https://github.com/yourname/ui-lib",
-      tech: ["React", "TypeScript", "Rollup"],
+      name: "激光打靶系统（2023 电赛）",
+      description: "省级一等奖。设计高精度激光打靶系统，包含光电传感器阵列与实时评分算法。",
+      url: "https://www.bilibili.com/video/BV1F8411C7Th",
+      tech: ["STM32", "传感器", "PCB"],
+    },
+    {
+      name: "板球控制系统（2017 电赛）",
+      description: "基于视觉反馈的板球平衡控制系统，使用 MuJoCo 仿真 IK 运动学解算，实现小球在平板上的精确定位控制。",
+      url: "https://www.bilibili.com/video/BV1eu4y1U78N",
+      tech: ["MuJoCo", "Python", "控制算法"],
+    },
+    {
+      name: "双车跟随系统",
+      description: "设计双车协同跟随系统，实现前车路径记录与后车自动循迹，支持动态避障与速度匹配。",
+      url: "https://www.bilibili.com/video/BV1jk4y1V7QM",
+      tech: ["STM32", "传感器融合", "PID"],
+    },
+    {
+      name: "智能墨水屏显示终端",
+      description: "基于 ESP32 的低功耗墨水屏信息显示终端，支持 WiFi 远程更新内容与电池供电长期运行。",
+      url: "https://www.bilibili.com/video/BV1MC411n7Pm",
+      tech: ["ESP32", "墨水屏", "WiFi", "低功耗"],
+    },
+    {
+      name: "AI 语音聊天机器人",
+      description: "基于 ESP32 的本地 AI 语音交互机器人，集成语音识别、TTS 与大模型 API，实现自然语言对话。",
+      tech: ["ESP32", "AI", "语音识别", "TTS"],
     },
   ],
 };

@@ -1,8 +1,8 @@
 export const site = {
-  name: "你的名字",
-  title: "你的头衔 / 一句话定位",
-  email: "your@email.com",
-  github: "https://github.com/yourname",
+  name: "温世明",
+  title: "嵌入式系统工程师",
+  email: "18235859453@163.com",
+  github: "https://github.com/18235859453",
   locale: "zh-CN",
   theme: "system" as const,
 };
