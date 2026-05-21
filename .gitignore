@@ -3,6 +3,7 @@ dist/
 .env
 .DS_Store
 .astro/
+.claude/
 
 # wrangler files
 .wrangler
